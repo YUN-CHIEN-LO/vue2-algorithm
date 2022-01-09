@@ -1,0 +1,141 @@
+// position
+@mixin setPosition($p: relative, $t: auto, $r: auto, $b: auto, $l: auto) {
+  position: $p;
+  @if not($p == relative) {
+    top: $t;
+    right: $r;
+    bottom: $b;
+    left: $l;
+  }
+}
+
+// 寬度
+@mixin setWidth($w: 100%, $max: null, $min: null) {
+  width: $w;
+  @if ($max) {
+    max-width: $max;
+  }
+  @if ($min) {
+    min-width: $min;
+  }
+}
+
+// flex
+@mixin setFlex($fd: row, $jc: center, $ai: center, $fw: wrap) {
+  display: flex;
+  flex-direction: $fd;
+  justify-content: $jc;
+  align-items: $ai;
+  flex-wrap: $fw;
+}
+
+// default font-size
+@mixin setBasicFontSize($important: false) {
+    @if $important {
+      font-size: 1.125rem !important;
+      line-height: 1.75 !important;
+      font-weight: 400 !important;
+      @media (max-width: $sm) {
+        font-size: 1rem !important;
+      }
+    } @else {
+      font-size: 1.125rem;
+      line-height: 1.75;
+      font-weight: 400;
+      @media (max-width: $sm) {
+        font-size: 1rem;
+      }
+    }
+  }
+
+// shadow
+@mixin shadow($shadow...) {
+  @each $pre in -webkit-, -moz-, -ms-, -o- {
+    #{$pre + box-shadow}: $shadow;
+  }
+  #{box-shadow}: $shadow;
+}
+
+// 動畫
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+/* BEM
+   -------------------------- */
+@mixin b($namespace, $block) {
+  $B: $namespace + "-" + $block !global;
+
+  .#{$B} {
+    @content;
+  }
+}
+
+@mixin e($element) {
+  $E: $element !global;
+  $selector: &;
+  $currentSelector: "";
+  @each $unit in $element {
+    $currentSelector: #{$currentSelector +
+      & +
+      $element-separator +
+      $unit +
+      ","};
+  }
+
+  @if hitAllSpecialNestRule($selector) {
+    @at-root {
+      #{$selector} {
+        #{$currentSelector} {
+          @content;
+        }
+      }
+    }
+  } @else {
+    @at-root {
+      #{$currentSelector} {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin m($modifier) {
+  $selector: &;
+  $currentSelector: "";
+  @each $unit in $modifier {
+    $currentSelector: #{$currentSelector +
+      & +
+      $modifier-separator +
+      $unit +
+      ","};
+  }
+
+  @at-root {
+    #{$currentSelector} {
+      @content;
+    }
+  }
+}
+
+@mixin when($state) {
+  @at-root {
+    .#{$state-prefix + $state} {
+      @content;
+    }
+  }
+}
