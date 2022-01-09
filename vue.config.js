@@ -6,20 +6,6 @@ module.exports = {
   outputDir: "dist",
   // 是否開啟 ESlint 檢測
   lintOnSave: !isProduction,
-  // 是否在打包時產出 Source Map
-  productionSourceMap: !isProduction,
-  devServer: {
-    // 啟動後開啟瀏覽器
-    open: true,
-    // 設置主機地址
-    host: process.env.VUE_APP_HOST,
-    // 設置默認埠號
-    port: process.env.VUE_APP_PORT,
-    // 啟用 HTTPS 協定
-    https: true,
-    // 啟用 HTTP2 協定
-    http2: true,
-  },
   // 全局 scss
   css: {
     // 是否將 components 中的 css 提取至獨立的 CSS 文件

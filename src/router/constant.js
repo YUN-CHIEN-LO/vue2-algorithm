@@ -10,10 +10,15 @@ const basicRoutes = [
         name: "PageError",
         path: "",
         component: () => import("@/views/Error"),
-        meta: {
-          title: "error",
-        },
       },
+    ],
+  },
+  {
+    // 首頁
+    path: "/",
+    component: LycLayout,
+    children: [
+      { name: "PageHome", path: "", component: () => import("@/views/Home") },
     ],
   },
 ];

@@ -1,13 +1,14 @@
 // Common
-@import 'common/config';
-@import 'common/var';
-@import 'common/function';
-@import 'common/mixin';
+@import "common/config";
+@import "common/var";
+@import "common/function";
+@import "common/mixin";
 * {
   font-family: $body-font-family;
   box-sizing: border-box;
   color: $--color-text-primary;
 }
+
 h1,
 h2,
 h3,

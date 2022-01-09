@@ -8,4 +8,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+@include b(page, error) {
+  background-color: yellow;
+}
+</style>
