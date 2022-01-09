@@ -10,6 +10,9 @@ const basicRoutes = [
         name: "PageError",
         path: "",
         component: () => import("@/views/Error"),
+        meta: {
+          noPage: true,
+        },
       },
     ],
   },
@@ -18,7 +21,30 @@ const basicRoutes = [
     path: "/",
     component: LycLayout,
     children: [
-      { name: "PageHome", path: "", component: () => import("@/views/Home") },
+      {
+        name: "PageHome",
+        path: "",
+        component: () => import("@/views/Home"),
+        meta: {
+          noPage: true,
+        },
+      },
+    ],
+  },
+  {
+    // Sort
+    path: "/sort",
+    component: LycLayout,
+    children: [
+      {
+        name: "SortInsertion",
+        path: "insertion",
+        component: () => import("@/views/Page"),
+        meta: {
+          key: "insertionSort",
+          title: "Insertion Sort",
+        },
+      },
     ],
   },
 ];
