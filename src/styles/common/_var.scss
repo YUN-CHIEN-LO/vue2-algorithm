@@ -1,0 +1,13 @@
+// media screen
+$xs: 300px;
+$ss: 480px;
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+
+$--color-text-primary: #666464;
+
+// 指定全域字體
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap');
+$body-font-family: 'Noto Sans TC', sans-serif;
