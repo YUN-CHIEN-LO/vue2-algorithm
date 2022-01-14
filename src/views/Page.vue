@@ -129,9 +129,11 @@
 import { RWD } from "@/utils";
 import InsertionSort from "./InsertionSort.vue";
 import MergeSort from "./MergeSort.vue";
+import BubbleSort from "./BubbleSort.vue";
 const mapAlgo = {
   insertionSort: InsertionSort,
   mergeSort: MergeSort,
+  bubbleSort: BubbleSort,
 };
 export default {
   name: "LayoutPage",

@@ -54,6 +54,15 @@ const basicRoutes = [
           title: "Merge Sort",
         },
       },
+      {
+        name: "SortBubble",
+        path: "bubble",
+        component: () => import("@/views/Page"),
+        meta: {
+          key: "bubbleSort",
+          title: "BubbleSort",
+        },
+      },
     ],
   },
 ];
