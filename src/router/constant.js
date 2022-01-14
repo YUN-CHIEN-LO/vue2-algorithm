@@ -45,6 +45,15 @@ const basicRoutes = [
           title: "Insertion Sort",
         },
       },
+      {
+        name: "SortMerge",
+        path: "merge",
+        component: () => import("@/views/Page"),
+        meta: {
+          key: "mergeSort",
+          title: "Merge Sort",
+        },
+      },
     ],
   },
 ];

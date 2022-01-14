@@ -1,6 +1,6 @@
 <template>
   <div class="insertion-sort">
-    <transition-group class="insertion-sort__demo" name="flip-list" tag="div">
+    <transition-group class="insertion-sort__demo" name="list" tag="div">
       <lyc-block v-for="item in moves[step]" :key="item.key">
         {{ item.value }}
       </lyc-block>
@@ -96,7 +96,7 @@ export default {
     @include setFlex($fd: column);
   }
 }
-.flip-list-move {
+.list-move {
   transition: transform 0.5s;
 }
 </style>

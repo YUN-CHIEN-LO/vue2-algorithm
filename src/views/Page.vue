@@ -106,7 +106,7 @@
       </div>
       <!-- 元件 -->
       <component
-        :is="mapAlgo['insertionSort']"
+        :is="mapAlgo[$route.meta.key]"
         :input="inputSlot"
         :step="step"
         :moves="moves"
@@ -128,8 +128,10 @@
 <script>
 import { RWD } from "@/utils";
 import InsertionSort from "./InsertionSort.vue";
+import MergeSort from "./MergeSort.vue";
 const mapAlgo = {
   insertionSort: InsertionSort,
+  mergeSort: MergeSort,
 };
 export default {
   name: "LayoutPage",
@@ -231,6 +233,7 @@ export default {
      * 指定輸入
      */
     assignInput() {
+      if (this.input.length === 0) return;
       this.inputSlot = this.input;
       this.step = 0;
       if (this.isMobile) {
@@ -248,6 +251,7 @@ export default {
      */
     changeMoves(moves) {
       this.moves = moves;
+      this.step = 0;
     },
     /**
      * 播放步驟
@@ -305,6 +309,7 @@ export default {
   }
   @include e(tool) {
     @include setFlex();
+    margin-bottom: 20px;
     & h3 {
       margin-right: auto;
     }

@@ -4,6 +4,8 @@
     <div class="layout-router__link" @click="to('/sort/insertion')">
       InsertionSort
     </div>
+
+    <div class="layout-router__link" @click="to('/sort/merge')">MergeSort</div>
   </div>
 </template>
 
