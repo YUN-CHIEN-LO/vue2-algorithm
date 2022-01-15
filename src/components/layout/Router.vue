@@ -1,7 +1,9 @@
 <template>
   <div class="layout-router" :class="`is-${direction}`">
-    <div class="layout-router__link" @click="to('/')">Home</div>
     <div class="layout-router__link" @click="to('/sort')">Sort</div>
+    <div class="layout-router__link" @click="to('/devide_and_conquer')">
+      Devide and Conquer
+    </div>
   </div>
 </template>
 

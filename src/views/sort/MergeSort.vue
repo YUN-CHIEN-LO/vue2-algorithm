@@ -93,6 +93,7 @@ MERGE-SORT(A, p, r)
         best: "O(n*log n)",
         worst: "O(n*log n)",
       },
+      nagativeRange: false,
     });
   },
   watch: {

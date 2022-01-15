@@ -64,6 +64,7 @@ export default {
         best: "O(n)",
         worst: "O(n^2)",
       },
+      nagativeRange: false,
     });
   },
   watch: {

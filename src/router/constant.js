@@ -73,6 +73,30 @@ const basicRoutes = [
       },
     ],
   },
+  {
+    // Devide and Conquer
+    path: "/devide_and_conquer",
+    component: LycLayout,
+    children: [
+      {
+        name: "PageDevideAndConquer",
+        path: "",
+        component: () => import("@/views/devide-and-conquer/index.vue"),
+        meta: {
+          noPage: true,
+        },
+      },
+      {
+        name: "MaxSubarray",
+        path: "max_subarray",
+        component: () => import("@/views/Page"),
+        meta: {
+          key: "maxSubarray",
+          title: "MaxSubarray",
+        },
+      },
+    ],
+  },
 ];
 
 const constantRoutes = basicRoutes;

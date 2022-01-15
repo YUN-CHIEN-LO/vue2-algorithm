@@ -30,7 +30,6 @@
         <el-collapse-item title="輸入選項" name="input">
           <!-- 快速輸入 -->
           <div class="layout-page__row">
-            <el-button @click="simpleInput">快速輸入</el-button>
             <el-button @click="randomInput">隨機輸入</el-button>
           </div>
           <!-- 數字輸入 -->
@@ -126,10 +125,12 @@ import { RWD } from "@/utils";
 import InsertionSort from "./sort/InsertionSort.vue";
 import MergeSort from "./sort/MergeSort.vue";
 import BubbleSort from "./sort/BubbleSort.vue";
+import MaxSubarray from "./devide-and-conquer/MaxSubarray.vue";
 const mapAlgo = {
   insertionSort: InsertionSort,
   mergeSort: MergeSort,
   bubbleSort: BubbleSort,
+  maxSubarray: MaxSubarray,
 };
 export default {
   name: "LayoutPage",
@@ -141,7 +142,7 @@ export default {
       if (this.$store.getters.windowWidth < RWD.sm) {
         return "100%";
       } else {
-        return "300px";
+        return "500px";
       }
     },
     sidebarStyle() {
@@ -161,6 +162,7 @@ export default {
           best: "",
           worst: "",
         },
+        nagativeRange: false,
       },
       mapAlgo: mapAlgo,
       step: 0,
@@ -184,26 +186,25 @@ export default {
     /**
      * 切換頁面資訊
      *
-     * @param {object} info - 頁面資訊Ｆ
+     * @param {object} info - 頁面資訊
      */
     changePage(info) {
       this.info = info;
     },
     //#region 輸入Input
     /**
-     * 快速輸入
-     */
-    simpleInput() {
-      this.input = [3, 2, 5, 4, 1];
-      this.assignInput();
-    },
-    /**
      * 隨機輸入
      */
     randomInput() {
       this.input = [];
-      for (let i = 0; i < 10; i++) {
-        this.input.push(Math.floor(Math.random() * 100));
+      if (this.info.nagativeRange) {
+        for (let i = 0; i < 10; i++) {
+          this.input.push(Math.floor(Math.random() * 200) - 100);
+        }
+      } else {
+        for (let i = 0; i < 10; i++) {
+          this.input.push(Math.floor(Math.random() * 100));
+        }
       }
       this.assignInput();
     },
