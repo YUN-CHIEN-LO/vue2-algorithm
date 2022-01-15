@@ -1,8 +1,15 @@
 <template>
-  <div class="lyc-block" :class="{ 'is-disabled': disabled }">
+  <div
+    class="lyc-block"
+    :class="{
+      'is-disabled': disabled,
+      'is-highlight': highlight,
+      'is-danger': danger,
+    }"
+  >
     <div class="lyc-block__wrapper">
       <p>
-        <slot>{{ value }}</slot>
+        <slot> {{ value }}</slot>
       </p>
     </div>
   </div>
@@ -17,6 +24,14 @@ export default {
       default: "",
     },
     disabled: {
+      type: Boolean,
+      default: false,
+    },
+    highlight: {
+      type: Boolean,
+      default: false,
+    },
+    danger: {
       type: Boolean,
       default: false,
     },
@@ -42,6 +57,18 @@ export default {
     border: solid 3px #ccc;
     & p {
       color: #ccc;
+    }
+  }
+  @include when(highlight) {
+    border: solid 3px teal;
+    & p {
+      color: teal;
+    }
+  }
+  @include when(danger) {
+    border: solid 3px salmon;
+    & p {
+      color: salmon;
     }
   }
 }

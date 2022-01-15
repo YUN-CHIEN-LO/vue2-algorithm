@@ -12,7 +12,12 @@
     </div>
     <!-- 排序組 -->
     <transition-group class="merge-sort__demo" name="list" tag="div">
-      <lyc-block v-for="item in moves[step]" :key="item.key">
+      <lyc-block
+        v-for="item in moves[step]"
+        :key="item.key"
+        :highlight="item.highlight"
+        :danger="item.danger"
+      >
         {{ item.value }}
       </lyc-block>
     </transition-group>
@@ -46,7 +51,14 @@ export default {
     this.$emit(
       "change:moves",
       this.sort(
-        cloneDeep(this.input.map((x, index) => ({ key: index, value: x })))
+        cloneDeep(
+          this.input.map((x, index) => ({
+            key: index,
+            value: x,
+            highlight: false,
+            danger: false,
+          }))
+        )
       )
     );
     this.$emit("change:page", {
@@ -87,7 +99,16 @@ MERGE-SORT(A, p, r)
     input(val) {
       this.$emit(
         "change:moves",
-        this.sort(cloneDeep(val.map((x, index) => ({ key: index, value: x }))))
+        this.sort(
+          cloneDeep(
+            val.map((x, index) => ({
+              key: index,
+              value: x,
+              highlight: false,
+              danger: false,
+            }))
+          )
+        )
       );
     },
   },
@@ -114,8 +135,16 @@ MERGE-SORT(A, p, r)
         moves.push(data);
         if (data.length === 1) return data;
         const middle = Math.ceil(data.length / 2);
-        const front = mergeSort(data.slice(0, middle));
-        const back = mergeSort(data.slice(middle, data.length));
+        const front = mergeSort(data.slice(0, middle)).map((x) => ({
+          ...x,
+          highlight: true,
+          danger: false,
+        }));
+        const back = mergeSort(data.slice(middle, data.length)).map((x) => ({
+          ...x,
+          highlight: false,
+          danger: true,
+        }));
         const merged = merge(front, back);
         moves.push(merged);
         return merged;
@@ -145,7 +174,13 @@ MERGE-SORT(A, p, r)
         return data;
       };
 
-      mergeSort(data);
+      moves.push(
+        mergeSort(data).map((x) => ({
+          ...x,
+          highlight: false,
+          danger: false,
+        }))
+      );
       return moves;
     },
   },

@@ -37,6 +37,14 @@ const basicRoutes = [
     component: LycLayout,
     children: [
       {
+        name: "PageSort",
+        path: "",
+        component: () => import("@/views/sort/index.vue"),
+        meta: {
+          noPage: true,
+        },
+      },
+      {
         name: "SortInsertion",
         path: "insertion",
         component: () => import("@/views/Page"),

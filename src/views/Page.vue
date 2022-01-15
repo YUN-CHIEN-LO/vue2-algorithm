@@ -74,10 +74,6 @@
     >
       <!-- 工具列 -->
       <div class="layout-page__tool">
-        <!-- 步數 -->
-        <h3>
-          {{ step + 1 }}
-        </h3>
         <!-- 播放 -->
         <el-button @click="playStep" :icon="'el-icon-video-play'" circle>
         </el-button>
@@ -127,9 +123,9 @@
 
 <script>
 import { RWD } from "@/utils";
-import InsertionSort from "./InsertionSort.vue";
-import MergeSort from "./MergeSort.vue";
-import BubbleSort from "./BubbleSort.vue";
+import InsertionSort from "./sort/InsertionSort.vue";
+import MergeSort from "./sort/MergeSort.vue";
+import BubbleSort from "./sort/BubbleSort.vue";
 const mapAlgo = {
   insertionSort: InsertionSort,
   mergeSort: MergeSort,
@@ -267,7 +263,6 @@ export default {
       async function load() {
         await timer(500);
         for (var i = 0; i < _.moves.length; i++) {
-          console.log(i);
           _.showStep(1);
           await timer(500);
         }

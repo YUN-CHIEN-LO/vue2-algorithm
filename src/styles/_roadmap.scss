@@ -1,0 +1,28 @@
+@include b(page, roadmap) {
+  padding: 20px;
+  & h1 {
+    text-align: center;
+  }
+  @include e(block) {
+    width: calc(33.3% - 20px);
+    cursor: pointer;
+    padding: 20px;
+    margin: 10px;
+    border-left: solid 5px #666;
+    background-color: #efefef;
+    &:hover {
+      background-color: #ccc;
+    }
+    @media (min-width: $sm) and (max-width: $md) {
+      width: calc(50% - 20px);
+    }
+    @media (max-width: $sm) {
+      width: calc(100% - 20px);
+    }
+    @include e(wrapper) {
+      @include setFlex($jc: flex-start);
+      @include setWidth($max: $xl);
+      margin-top: 60px;
+    }
+  }
+}

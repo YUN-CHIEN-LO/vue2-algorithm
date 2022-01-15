@@ -1,13 +1,7 @@
 <template>
   <div class="layout-router" :class="`is-${direction}`">
     <div class="layout-router__link" @click="to('/')">Home</div>
-    <div class="layout-router__link" @click="to('/sort/insertion')">
-      InsertionSort
-    </div>
-    <div class="layout-router__link" @click="to('/sort/merge')">MergeSort</div>
-    <div class="layout-router__link" @click="to('/sort/bubble')">
-      BubbleSort
-    </div>
+    <div class="layout-router__link" @click="to('/sort')">Sort</div>
   </div>
 </template>
 

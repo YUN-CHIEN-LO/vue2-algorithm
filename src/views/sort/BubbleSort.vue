@@ -1,7 +1,12 @@
 <template>
   <div class="insertion-sort">
     <transition-group class="insertion-sort__demo" name="list" tag="div">
-      <lyc-block v-for="item in moves[step]" :key="item.key">
+      <lyc-block
+        v-for="item in moves[step]"
+        :key="item.key"
+        :highlight="item.highlight"
+        :disabled="item.disabled"
+      >
         {{ item.value }}
       </lyc-block>
     </transition-group>
@@ -35,7 +40,14 @@ export default {
     this.$emit(
       "change:moves",
       this.sort(
-        cloneDeep(this.input.map((x, index) => ({ key: index, value: x })))
+        cloneDeep(
+          this.input.map((x, index) => ({
+            key: index,
+            value: x,
+            highlight: false,
+            disabled: false,
+          }))
+        )
       )
     );
     this.$emit("change:page", {
@@ -58,7 +70,16 @@ export default {
     input(val) {
       this.$emit(
         "change:moves",
-        this.sort(cloneDeep(val.map((x, index) => ({ key: index, value: x }))))
+        this.sort(
+          cloneDeep(
+            val.map((x, index) => ({
+              key: index,
+              value: x,
+              highlight: false,
+              disabled: false,
+            }))
+          )
+        )
       );
     },
   },
@@ -70,14 +91,25 @@ export default {
      */
     sort(data) {
       const moves = [cloneDeep(data)];
+      let tempMove = data.map((x) => ({ ...x, disabled: true }));
+      moves.push(tempMove);
       for (let i = 0; i < data.length; i++) {
         for (let j = data.length - 1; j > i; j--) {
+          tempMove = data.map((x) => ({ ...x, disabled: true }));
+          tempMove[i].highlight = true;
+          tempMove[j].disabled = false;
+          moves.push(tempMove);
           if (data[j].value < data[j - 1].value) {
             [data[j], data[j - 1]] = [data[j - 1], data[j]];
-            moves.push(cloneDeep(data));
+            tempMove = data.map((x) => ({ ...x, disabled: true }));
+            tempMove[i].highlight = true;
+            tempMove[j].disabled = false;
+            tempMove[j - 1].disabled = false;
+            moves.push(tempMove);
           }
         }
       }
+      moves.push(cloneDeep(data));
       return moves;
     },
   },
